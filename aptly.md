@@ -33,14 +33,28 @@ Should success
 
 ## Updating Snapshot
 
-`aptly mirror create -architectures=amd64 -filter-with-deps -filter='Name (python)' focal-demo-python http://dk.archive.ubuntu.com/ubuntu focal main`
+`aptly mirror create -architectures=amd64 -filter-with-deps -filter='Name (python3)' focal-demo-ext http://dk.archive.ubuntu.com/ubuntu focal main`
 
-`# aptly mirror update focal-demo-python`
+`# aptly mirror update focal-demo-ext`
 
-`# aptly snapshot create focal-demo-python-1.0.0 from mirror focal-demo-python`
+`# aptly snapshot create focal-demo-ext-1.0.0 from mirror focal-demo-ext`
 
-`# aptly snapshot merge -latest focal-demo-with-python focal-demo-1.0.0 focal-demo-python-1.0.0`
+`# aptly snapshot merge -latest focal-demo-all-1.0.0 focal-demo-1.0.0 focal-demo-ext-1.0.0`
 
-`# aptly publish switch -skip-signing focal focal-demo-with-python`
+`# aptly publish switch -skip-signing focal focal-demo-all-1.0.0`
 
 `# aptly serve`
+
+## Updating Target
+
+`# apt update`
+
+Should success
+`# apt install python3`
+
+Should fail
+`# apt install python2`
+
+## Misc
+
+`cat /root/.aptly/public/dists/focal/main/binary-amd64/Packages`
