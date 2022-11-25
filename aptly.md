@@ -55,16 +55,6 @@ Should success
 Should fail
 `# apt install python2`
 
-## Custom Repo
-
-`# aptly repo create sgre-custom`
-
-`# aptly repo add sgre-custom hello_1.0-1_amd64.deb`
-
-`# aptly snapshot create sgre-custom-1.0.0 from repo sgre-custom`
-
-`# aptly snapshot filter`
-
 ## Misc
 
 `# cat /root/.aptly/public/dists/focal/main/binary-amd64/Packages`
