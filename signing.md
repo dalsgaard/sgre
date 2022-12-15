@@ -16,16 +16,31 @@ gpg1 --gen-key
 gpg1 --export --armor kim@kimdalsgaard.com > kim-pubkey.asc
 ```
 
-### Copy the key ring to the current directory
+### List private keys
 ```
-cp /root/.gnupg/pubring.gpg .
+gpg1 --list-secret-keys
+```
+#### Output
+```
+/root/.gnupg/secring.gpg
+------------------------
+sec   2048R/1694E0E9 2022-12-13
+uid                  Kim Dalsgaard <kim@kimdalsgaard.com>
+ssb   2048R/CB5618F3 2022-12-13
+
 ```
 
-### Publish a signed snapshot
+### Export the private key
 ```
-aptly publish snapshot --keyring=./pubring.gpg sgre-combined-1.0.0
+gpg1 --export-secret-keys 1694E0E9 > private.key
 ```
 
+### Import the private key
+```
+gpg1 --import kim-private.key
+```
+
+### _kim-pubkey.asc_
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
