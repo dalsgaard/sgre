@@ -3,7 +3,7 @@
 
 ### Install the correct version of GPG
 ```
-apt install gnupg2
+apt install gpg
 ```
 
 ### Generate a key pair
@@ -44,4 +44,15 @@ gpg --import kim-private.asc
 ### Publish snapshot
 ```
 aptly publish snapshot --gpg-provider=gpg2 sgre-combined-1.0.0
+```
+
+### Import public key
+```
+gpg --output sgre-public.gpg --dearmor sgre-public.asc
+
+chown root:root sgre-public.gpg
+chmod ugo+r sgre-public.gpg
+chmod go-w sgre-public.gpg
+
+mv sgre-public.gpg /etc/apt/trusted.gpg.d/
 ```
